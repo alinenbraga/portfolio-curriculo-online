@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contato</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+      <!-- Cabeçalho do site -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">Currículo Pessoal</a>
+
+      <!-- Botão hamburger usando classe nav-toggle  -->
+      <button class="nav-toggle" aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menu" data-toggle="mainNav">
+        <span class="hamburger" aria-hidden="true"></span>
+      </button>
+
+      <!-- Navegação principal -->
+      <nav id="mainNav" class="main-nav" aria-label="Menu principal">
+        <ul>
+          <li><a href="index.html">Sobre mim</a></li>
+          <li><a href="formacao.html">Formação</a></li>
+          <li><a href="portfolio.html">Portfólio</a></li>
+          <li><a href="contato.html" class="active">Contato</a></li>
+        </ul>
+
+        <!-- Botão de alternância de tema: usa classe para permitir múltiplas instâncias -->
+        <button class="theme-toggle" aria-pressed="false" title="Alternar tema">🌙</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Conteúdo principal -->
+  <main class="contact-page" id="main" tabindex="-1">
+    <section class="contact-section" aria-labelledby="contactTitle">
+      <header class="contact-header">
+        <h1 id="contactTitle">Entre em contato</h1>
+        <p>Envie sua mensagem preenchendo o formulário abaixo. Responderei o mais breve possível!</p>
+      </header>
+
+      <!-- Formulário com aria-describedby por campo e elementos de erro específicos -->
+      <form id="contactForm" class="contact-form" novalidate>
+        <label for="name">Nome</label>
+        <!-- aria-describedby aponta para o elemento de erro específico -->
+        <input id="name" name="name" type="text" required aria-required="true" aria-describedby="err-name" />
+        <!-- Mensagem de erro específica do campo nome -->
+        <div id="err-name" class="field-error" role="alert" aria-live="assertive"></div>
+
+        <label for="email">E-mail</label>
+        <input id="email" name="email" type="email" required aria-required="true" placeholder="usuario@dominio.com" aria-describedby="err-email" />
+        <div id="err-email" class="field-error" role="alert" aria-live="assertive"></div>
+
+        <label for="message">Mensagem</label>
+        <textarea id="message" name="message" rows="6" required aria-required="true" aria-describedby="err-message"></textarea>
+        <div id="err-message" class="field-error" role="alert" aria-live="assertive"></div>
+
+        <!-- Ações do formulário -->
+        <div class="form-actions">
+          <!-- botão de submit e reset -->
+          <button type="submit" id="btnSubmit">Enviar</button>
+          <button type="reset" class="btn-secondary">Limpar</button>
+        </div>
+
+        <!-- Feedback geral (mensagens não relacionadas a campo específico) -->
+        <p id="formFeedback" class="form-feedback" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <!-- Rodapé -->
+<footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year4"></span> Aline — Portfólio pessoal</p>
+    </div>
+  </footer>
+
+    <!-- Modal de confirmação acessível (presente no DOM para o JS gerenciar foco) -->
+  <div id="modal" class="modal" role="dialog" aria-hidden="true" aria-labelledby="modalTitle" aria-modal="true">
+    <div class="modal-content" role="document">
+      <h2 id="modalTitle" class="sr-only">Confirmação</h2>
+      <p id="modalMessage">Mensagem enviada com sucesso!</p>
+      <!-- botão com id para o JS fechar e referência para retorno de foco -->
+      <button id="modalClose" class="btn-primary">Fechar</button>
+    </div>
+</div>
+
+<!-- Script principal -->
+  <script src="main.js"></script>
+</body>
+</html>
