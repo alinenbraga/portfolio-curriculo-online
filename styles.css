@@ -89,6 +89,20 @@ body.dark {
   object-fit: cover;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   border: 2px solid rgba(255,255,255,0.8);
+  z-index: 2;
+}
+/* Em telas pequenas a foto sai do fluxo absoluto para não sobrepor o texto */
+@media (max-width: 720px) {
+  .profile-photo {
+    position: static;        /* ALTERAÇÃO: evita sobreposição */
+    display: block;
+    margin: 0 auto 1rem;
+    width: 96px;
+    height: 96px;
+    transform: none;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  }
+  .hero { position: relative; padding-top: 1.5rem; }
 }
 
 /* Tipografia hero */
@@ -126,7 +140,8 @@ body.dark {
 
 /* Contato (consolidado) */
 .contact-page {
-  min-height: 100vh;
+  /* ALTERAÇÃO: usa variável para evitar problemas com 100vh em mobile */
+  min-height: var(--app-min-height, 100vh);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -214,81 +229,41 @@ body.dark .btn-secondary { background: #a78bfa; color: #fff; border: none; }
   white-space: nowrap; border: 0; padding: 0; margin: -1px;
 }
 
-/* Responsivo para navegação mobile */
+/* ALTERAÇÃO: variáveis para evitar problemas com 100vh em mobile */
+:root { --app-min-height: 100vh; }
+@supports (height: 100svh) { :root { --app-min-height: 100svh; } }
+
+/* Menu mobile: ocupa largura entre margens e permite rolagem vertical */
 @media (max-width: 800px) {
   .main-nav ul {
     display: none;
     position: absolute;
-    right: 1rem;
     top: 64px;
-    background: var(--surface);
+    left: 1rem;
+    right: 1rem;
+    width: auto;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+    overflow-x: hidden;
     padding: 0.8rem;
     border-radius: 10px;
     box-shadow: var(--shadow);
-    width: calc(100% - 2rem);
-    flex-direction: column;
+    background: var(--surface);
+    box-sizing: border-box; /* evita overflow por padding */
   }
-  .main-nav.open ul { display: flex; }
+  .main-nav.open ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
   .nav-toggle { display: inline-flex; }
   .brand { font-size: 1rem; }
+  .main-nav { z-index: 999; } /* garante menu acima do conteúdo */
 }
 
-/* Foco visível para acessibilidade */
-:focus {
-  outline: 3px solid rgba(11,94,215,0.18);
-  outline-offset: 2px;
-}
-
-
-/* --- Mobile fixes: melhorar responsividade em celulares (colar no fim do styles.css) --- */
-
-/* Evita problemas com 100vh em navegadores móveis (address bar) */
-:root {
-  /* fallback */
-  --app-min-height: 100vh;
-}
-@supports (height: 100svh) {
-  :root { --app-min-height: 100svh; } /* Safari/Chrome novos */
-}
-
-/* Use a variável onde antes havia min-height:100vh */
-.contact-page {
-  min-height: var(--app-min-height);
-}
-
-/* Header: permitir quebra e reduzir padding em telas pequenas */
-.header-inner { flex-wrap: wrap; }
-@media (max-width: 520px) {
-  .header-inner { padding: 0.5rem 0; gap: 0.5rem; }
-  .brand { font-size: 0.95rem; }
-}
-
-/* Formulário: tornar inputs e botões full-width e mais fáceis de tocar */
-@media (max-width: 520px) {
-  .contact-section { padding: 1rem; border-radius: 12px; }
-  .contact-form { padding: 1rem; gap: 0.6rem; }
-  .contact-form input, .contact-form textarea {
-    font-size: 1rem;
-    padding: 0.75rem;
-  }
-  .form-actions { flex-direction: column; align-items: stretch; }
-  .form-actions button { width: 100%; }
-  .contact-section { max-width: 100%; margin: 0 0.5rem; }
-}
-
-/* Menu mobile: garantir que o menu ocupe a largura correta */
-@media (max-width: 800px) {
-  .main-nav ul {
-    width: calc(100% - 2rem);
-    right: 1rem;
-    left: 1rem; /* garante centralização em telas pequenas */
-  }
-  .main-nav.open ul { display: flex; }
-}
-
-/* Aumentar área de toque dos botões (acessibilidade) */
+/* Aumentar área de toque dos botões */
 .theme-toggle, .nav-toggle, button[type="submit"], .btn-secondary, .btn-primary {
-  min-height: 44px; /* recomendado para toque */
+  min-height: 44px;
   padding-left: 12px;
   padding-right: 12px;
 }
@@ -296,5 +271,13 @@ body.dark .btn-secondary { background: #a78bfa; color: #fff; border: none; }
 /* Evitar overflow horizontal */
 html, body { overflow-x: hidden; }
 
-/* Pequeno ajuste para evitar que cards fiquem muito estreitos */
-.projects-grid { gap: 0.8rem; grid-auto-rows: auto; }
+/* Ajustes tipográficos para telas muito pequenas */
+@media (max-width: 420px) {
+  .hero h1 { font-size: 1.4rem; }
+  .hero p, .contact-header p { font-size: 0.95rem; }
+  .contact-section { padding: 1rem; margin: 0 0.5rem; }
+  .contact-form { padding: 1rem; gap: 0.6rem; }
+  .contact-form input, .contact-form textarea { padding: 0.75rem; }
+  .form-actions { flex-direction: column; gap: 0.5rem; }
+  .form-actions button { width: 100%; }
+}

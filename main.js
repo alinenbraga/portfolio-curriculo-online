@@ -168,7 +168,7 @@ function handleSubmit(e) {
     return false;
   }
 
-  // Simulação de envio (remova quando integrar)
+  // Simulação de envio 
   nameEl.value = '';
   emailEl.value = '';
   msgEl.value = '';
