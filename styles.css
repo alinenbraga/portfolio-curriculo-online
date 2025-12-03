@@ -1,6 +1,21 @@
+/* styles.css - Versão final e comentada
+   - Variáveis de tema e fallback para 100svh
+   - Inputs compatíveis com dark mode
+   - focus-visible para acessibilidade
+   - Menu mobile com transição suave e posicionamento robusto
+   - Botão secundário lilás no modo dark
+*/
+
 /* Reset básico */
-* { box-sizing: border-box; margin: 0; padding: 0; }
+*,
+*::before,
+*::after { box-sizing: border-box; margin: 0; padding: 0; }
+
 html, body { height: 100%; }
+
+/* Evita overflow horizontal global */
+html, body { overflow-x: hidden; }
+
 body {
   font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
   background: var(--bg);
@@ -8,7 +23,7 @@ body {
   line-height: 1.6;
 }
 
-/* ALTERAÇÃO: variáveis de tema e cores padronizadas para contraste em dark */
+/* VARIÁVEIS DE TEMA */
 :root {
   --bg: #f4f6f8;
   --surface: #ffffff;
@@ -21,7 +36,18 @@ body {
   --card-bg: #ffffff;
   --radius: 12px;
   --shadow: 0 6px 20px rgba(16,24,40,0.08);
+
+  /* Variáveis para campos e inputs (usadas em light e dark) */
+  --input-bg: #ffffff;
+  --input-border: rgba(15,23,36,0.08);
+  --placeholder: rgba(15,23,36,0.4);
+
+  /* Altura mínima confiável em mobile */
+  --app-min-height: 100vh;
 }
+@supports (height: 100svh) { :root { --app-min-height: 100svh; } }
+
+/* Tema escuro */
 body.dark {
   --bg: #0b1220;
   --surface: #1a2332;
@@ -29,36 +55,71 @@ body.dark {
   --muted: #9aa6b2;
   --primary: #60a5fa;
   --accent: #60a5fa;
-  --link: #8cc6ff;      /* ALTERAÇÃO: link mais claro no dark para contraste */
+  --link: #8cc6ff;
   --link-hover: #bfe6ff;
   --card-bg: #16202b;
   --shadow: 0 6px 20px rgba(0,0,0,0.35);
+
+  /* Ajustes para inputs no dark */
+  --input-bg: #0f1720;
+  --input-border: rgba(255,255,255,0.06);
+  --placeholder: rgba(255,255,255,0.45);
 }
 
 /* Layout base */
 .container { max-width: 1100px; margin: 0 auto; padding: 1.25rem; }
+
+/* Header */
 .site-header {
-  position: sticky; top: 0; z-index: 100;
+  position: sticky;
+  top: 0;
+  z-index: 100;
   background: var(--surface);
   border-bottom: 1px solid rgba(15,23,36,0.06);
   box-shadow: var(--shadow);
 }
-.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.75rem 0; }
+
+/* ALTERAÇÃO: permite quebra em telas pequenas para evitar overflow do header */
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  flex-wrap: wrap; /* permite quebra em telas estreitas */
+}
 .brand { font-weight: 700; color: var(--text); text-decoration: none; }
 
 /* Navegação */
-.main-nav { display: flex; align-items: center; gap: 1rem; position: relative; }
-.main-nav ul { display: flex; gap: 0.6rem; list-style: none; }
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  z-index: 1000; /* garante que o nav fique acima do conteúdo */
+}
+.main-nav ul { display: flex; gap: 0.6rem; list-style: none; margin: 0; padding: 0; }
 .main-nav a {
-  display: inline-block; padding: 0.5rem 0.9rem; border-radius: 8px;
-  color: var(--text); text-decoration: none; font-weight: 600;
+  display: inline-block;
+  padding: 0.5rem 0.9rem;
+  border-radius: 8px;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
 }
 .main-nav a:hover, .main-nav a.active { background: var(--primary); color: #fff; }
+
+/* Botões de tema e hamburger */
 .theme-toggle {
-  margin-left: 0.5rem; background: transparent; border: 1px solid var(--muted);
-  padding: 0.45rem 0.7rem; border-radius: 8px; cursor: pointer; color: var(--text);
+  margin-left: 0.5rem;
+  background: transparent;
+  border: 1px solid var(--muted);
+  padding: 0.45rem 0.7rem;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--text);
 }
-.nav-toggle { display: none; background: none; border: 0; cursor: pointer; }
+.nav-toggle { display: none; background: none; border: 0; cursor: pointer; padding: 0.25rem; }
 .hamburger { width: 20px; height: 2px; background: var(--text); position: relative; display: inline-block; }
 .hamburger::before, .hamburger::after { content: ""; position: absolute; left: 0; width: 20px; height: 2px; background: var(--text); }
 .hamburger::before { top: -6px; } .hamburger::after { top: 6px; }
@@ -78,7 +139,7 @@ body.dark {
 }
 .hero img { max-width: 100%; height: auto; }
 
-/* ALTERAÇÃO: foto circular com comportamento responsivo (evita sobreposição em mobile) */
+/* Foto circular */
 .profile-photo {
   position: absolute; /* desktop: fica no canto */
   top: 20px;
@@ -92,12 +153,12 @@ body.dark {
   z-index: 2;
 }
 
-/* Em telas pequenas a foto sai do fluxo absoluto para não sobrepor o texto */
+/* ALTERAÇÃO: Em telas pequenas a foto sai do fluxo absoluto para não sobrepor o texto */
 @media (max-width: 720px) {
   .profile-photo {
-    position: static;        /* ALTERAÇÃO: evita sobreposição */
+    position: static;        /* evita sobreposição */
     display: block;
-    margin: 0 auto 1rem;
+    margin: 1rem auto;       /* margem superior para afastar do topo */
     width: 96px;
     height: 96px;
     transform: none;
@@ -126,8 +187,6 @@ body.dark {
   box-shadow: var(--shadow);
   color: var(--text);
 }
-
-/* ALTERAÇÃO: links dentro dos cards usam variável --link para contraste em dark */
 .project a, .project .view-link, .project button {
   color: var(--link);
   text-decoration: none;
@@ -141,8 +200,7 @@ body.dark {
 
 /* Contato */
 .contact-page {
-  /* ALTERAÇÃO: usa variável para evitar problemas com 100vh em mobile */
-  min-height: var(--app-min-height, 100vh);
+  min-height: var(--app-min-height, 100vh); /* usa variável para evitar problemas com 100vh em mobile */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -161,6 +219,7 @@ body.dark {
 .contact-header p { color: var(--muted); font-size: 1rem; }
 
 /* Formulário */
+/* ALTERAÇÃO: usa variáveis para fundo e borda dos inputs, garantindo contraste em dark */
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -172,16 +231,24 @@ body.dark {
   width: 100%;
   max-width: 500px;
 }
-.contact-form input, .contact-form textarea {
+.contact-form input,
+.contact-form textarea {
   padding: 0.6rem 0.8rem;
-  border: 1px solid rgba(15,23,36,0.08);
+  border: 1px solid var(--input-border);
   border-radius: 8px;
   font-size: 1rem;
   color: var(--text);
-  background: #fff;
+  background: var(--input-bg);
 }
-.contact-form input:focus, .contact-form textarea:focus {
-  outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(11,94,215,0.12);
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: var(--placeholder);
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(11,94,215,0.12);
 }
 
 /* Mensagens de erro por campo */
@@ -193,9 +260,32 @@ body.dark {
 
 /* Ações do formulário */
 .form-actions { display: flex; gap: 0.6rem; margin-top: 0.6rem; }
-button[type="submit"], .btn-primary { background: var(--primary); color: #fff; border: 0; padding: 0.6rem 1rem; border-radius: 8px; cursor: pointer; }
-.btn-secondary { background: transparent; border: 1px solid var(--muted); padding: 0.6rem 1rem; border-radius: 8px; cursor: pointer; color: var(--text); }
-body.dark .btn-secondary { background: #a78bfa; color: #fff; border: none; }
+button[type="submit"], .btn-primary {
+  background: var(--primary);
+  color: #fff;
+  border: 0;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--muted);
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--text);
+}
+/* ALTERAÇÃO: botão secundário no modo dark com cor lilás e borda consistente */
+body.dark .btn-secondary {
+  background: #a78bfa;
+  color: #fff;
+  border: 1px solid #a78bfa;
+}
+body.dark .btn-secondary:hover {
+  background: #c4b5fd;
+  border-color: #c4b5fd;
+}
 
 /* Rodapé */
 .site-footer { border-top: 1px solid rgba(15,23,36,0.06); padding: 1rem 0; margin-top: 2rem; text-align: center; color: var(--muted); }
@@ -230,37 +320,43 @@ body.dark .btn-secondary { background: #a78bfa; color: #fff; border: none; }
   white-space: nowrap; border: 0; padding: 0; margin: -1px;
 }
 
-/* Responsivo e correções mobile */
-/* ALTERAÇÃO: variáveis para evitar problemas com 100vh em mobile */
-:root { --app-min-height: 100vh; }
-@supports (height: 100svh) { :root { --app-min-height: 100svh; } }
-
-/* Menu mobile: ocupa largura entre margens e permite rolagem vertical */
+/* Menu mobile: ocupa largura total e permite rolagem vertical */
+/* ALTERAÇÃO: left 0 e right 0 para garantir centralização e evitar que o menu fique fora da tela */
+/* Adicionada transição suave e pointer-events para controle de interação */
 @media (max-width: 800px) {
   .main-nav ul {
     display: none;
     position: absolute;
-    top: 64px;
-    left: 1rem;
-    right: 1rem;
-    width: auto;
+    top: calc(100% + 8px); /* posiciona logo abaixo do header, mais robusto que valor fixo */
+    left: 0;
+    right: 0;
+    width: 100%;
     max-height: calc(100vh - 80px);
     overflow-y: auto;
     overflow-x: hidden;
     padding: 0.8rem;
-    border-radius: 10px;
+    border-radius: 0;
     box-shadow: var(--shadow);
     background: var(--surface);
-    box-sizing: border-box; /* evita overflow por padding */
+    box-sizing: border-box;
+    flex-direction: column;
+    gap: 0.6rem;
+    z-index: 1100;
+    transition: transform 220ms ease, opacity 180ms ease;
+    transform-origin: top center;
+    opacity: 0;
+    transform: translateY(-6px) scaleY(0.98);
+    pointer-events: none;
   }
   .main-nav.open ul {
     display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+    pointer-events: auto;
   }
   .nav-toggle { display: inline-flex; }
   .brand { font-size: 1rem; }
-  .main-nav { z-index: 999; } /* garante menu acima do conteúdo */
+  .main-nav { z-index: 1100; }
 }
 
 /* Aumentar área de toque dos botões */
@@ -270,8 +366,14 @@ body.dark .btn-secondary { background: #a78bfa; color: #fff; border: none; }
   padding-right: 12px;
 }
 
-/* Evitar overflow horizontal */
-html, body { overflow-x: hidden; }
+/* Foco visível para acessibilidade */
+/* ALTERAÇÃO: usa focus-visible para mostrar outline apenas quando apropriado (teclado) */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+/* Fallback suave para navegadores sem suporte */
+:focus { box-shadow: 0 0 0 3px rgba(11,94,215,0.06); }
 
 /* Ajustes tipográficos para telas muito pequenas */
 @media (max-width: 420px) {
@@ -282,4 +384,6 @@ html, body { overflow-x: hidden; }
   .contact-form input, .contact-form textarea { padding: 0.75rem; }
   .form-actions { flex-direction: column; gap: 0.5rem; }
   .form-actions button { width: 100%; }
+  /* Pequeno padding extra para telas muito estreitas */
+  body { padding-left: 0.5rem; padding-right: 0.5rem; }
 }

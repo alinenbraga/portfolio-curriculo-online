@@ -1,66 +1,74 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre mim | Portfólio</title>
-    <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Sobre mim | Portfólio</title>
 
+  <!-- Snippet que aplica o tema antes do CSS para evitar "flash" -->
+  <script>
+    try {
+      const t = localStorage.getItem('theme');
+      if (t === 'dark') document.body.classList.add('dark');
+    } catch (e) {}
+  </script>
+
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-    <!-- Menu fixo no topo -->
+  <!-- Menu fixo no topo -->
   <header class="site-header">
     <div class="container header-inner">
-        <a class="brand" href="index.html">Currículo Pessoal</a>
-        <button id="btnToggle" class="nav-toggle" aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menu">
-            <span class="hamburger"></span>
-        </button>
-        <nav id="mainNav" class="main-nav" aria-label="Menu principal">
-            <ul>
-                <li><a href="index.html" class="active">Sobre mim</a></li>
-                <li><a href="formacao.html">Formação</a></li>
-                <li><a href="portfolio.html">Portfólio</a></li>
-                <li><a href="contato.html">Contato</a></li>
-            </ul>
-            <button id="themeToggle" class="theme-toggle" aria-pressed="false">🌙</button>
-        </nav>
-    </div>
-</header>
+      <a class="brand" href="index.html">Currículo Pessoal</a>
 
-<main class="container main-content" id="content">
+      <!-- Botão hamburger padronizado (classe nav-toggle) -->
+      <button class="nav-toggle" aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menu">
+        <span class="hamburger" aria-hidden="true"></span>
+      </button>
+
+      <!-- Menu principal padronizado -->
+      <nav id="mainNav" class="main-nav" aria-label="Menu principal">
+        <ul>
+          <li><a href="index.html" class="active">Sobre mim</a></li>
+          <li><a href="formacao.html">Formação</a></li>
+          <li><a href="portfolio.html">Portfólio</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+        <button class="theme-toggle" aria-pressed="false" title="Alternar tema">🌙</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container main-content" id="content">
     <section class="hero">
-        <!--Foto -->
-        <img src="imagem-sobre.jpg" alt="Foto de Aline" class="profile-photo">
-        <h1>Olá, Seja Bem-Vindo(a)! <br> Eu sou a Aline</h1> <br>
-        <p>Sou formada Técnologa em Processos Gerenciais e atualmente cursando Tecnologia em Ciência de Dados.
-            <br> Aqui você encontra meu currículo online, projetos e um pouco sobre mim.</p><br><br>
-        <p><strong>Hobbies:</strong> Leitura, jogos, quebra-cabeças, e caminhadas ao ar livre.</p>
+      <!-- Foto -->
+      <img src="imagem-sobre.jpg" alt="Foto de Aline" class="profile-photo" />
+      <h1>Olá, Seja Bem-Vindo(a)! <br> Eu sou a Aline</h1>
+      <p>Sou formada Tecnóloga em Processos Gerenciais e atualmente cursando Tecnologia em Ciência de Dados.
+        Aqui você encontra meu currículo online, projetos e um pouco sobre mim.</p>
+      <p><strong>Hobbies:</strong> Leitura, jogos, quebra-cabeças, e caminhadas ao ar livre.</p>
     </section>
 
     <section class="about">
-        <h2>Apresentação</h2>
-        <p>Sou Capixaba, nascida em Alegre-ES e resido atualmente em Gravataí-RS.</p>
-        <p>Tenho experiência em Logistica, onde atuei 2 anos na área e trabalho atualmente como suporte técnico para um provedor de internet.
-        <p>Sou uma pessoa centrada, detalhista, persistente e estou buscando meu desenvolvimento na área de tecnologia.</p><br >
-        <ul>
-            <li>Competência 1: Linguagem de Programação: Java, Python, C </li>
-            <li>Competência 2: Banco de Dados </li>
-            <li>Competência 3: Trabalho em equipe e comunicação</li>
-        </ul>
+      <h2>Apresentação</h2>
+      <p>Sou Capixaba, nascida em Alegre-ES e resido atualmente em Gravataí-RS.</p>
+      <p>Tenho experiência em Logística, onde atuei 2 anos na área e trabalho atualmente como suporte técnico para um provedor de internet.</p>
+      <p>Sou uma pessoa centrada, detalhista, persistente e estou buscando meu desenvolvimento na área de tecnologia.</p>
+      <ul>
+        <li>Competência 1: Linguagens: Java, Python, C</li>
+        <li>Competência 2: Banco de Dados</li>
+        <li>Competência 3: Trabalho em equipe e comunicação</li>
+      </ul>
     </section>
-</main>
+  </main>
 
-<footer class="site-footer">
+  <footer class="site-footer">
     <div class="container">
-        <p>© <span id="year"></span> Aline — Portfólio pessoal</p>
+      <p>© <span id="year"></span> Aline — Portfólio pessoal</p>
     </div>
-</footer>
+  </footer>
 
-
-<script src="main.js"></script>
-    
+  <script src="main.js"></script>
 </body>
 </html>
-
- 
