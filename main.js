@@ -5,6 +5,7 @@
    - Modal acessível com focus trap simples e retorno de foco
 */
 
+/* Executa quando o DOM estiver pronto */
 document.addEventListener('DOMContentLoaded', () => {
   // Atualiza ano nos rodapés (se existirem)
   ['year','year2','year3','year4'].forEach(id => {
@@ -12,7 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (el) el.textContent = new Date().getFullYear();
   });
 
-  // --- Aplica preferência de tema imediatamente ao carregar a página ---
+  // ALTERAÇÃO CRÍTICA: aplica preferência de tema imediatamente ao carregar a página
+  // Isso evita que a página "pisque" em tema claro antes do script aplicar o dark
   const savedTheme = localStorage.getItem('theme');
   if (savedTheme === 'dark') {
     document.body.classList.add('dark');
@@ -44,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const toggles = document.querySelectorAll('.nav-toggle');
   toggles.forEach(t => {
     t.addEventListener('click', (e) => {
+      // encontra o nav relacionado
       const header = e.currentTarget.closest('.header-inner');
       const nav = header ? header.querySelector('#mainNav') : null;
       if (!nav) return;
@@ -168,7 +171,7 @@ function handleSubmit(e) {
     return false;
   }
 
-  // Simulação de envio 
+  // Simulação de envio (remova quando integrar com backend)
   nameEl.value = '';
   emailEl.value = '';
   msgEl.value = '';
