@@ -8,7 +8,7 @@ body {
   line-height: 1.6;
 }
 
-/* Variáveis de tema e cores (use estas variáveis para consistência) */
+/* Variáveis de tema e cores */
 :root {
   --bg: #f4f6f8;
   --surface: #ffffff;
@@ -29,7 +29,7 @@ body.dark {
   --muted: #9aa6b2;
   --primary: #60a5fa;
   --accent: #60a5fa;
-  --link: #60a5fa;       /* link mais claro no dark para contraste */
+  --link: #60a5fa;       /* ALTERAÇÃO: link mais claro no dark para contraste */
   --link-hover: #8cc6ff;
   --card-bg: #16202b;
   --shadow: 0 6px 20px rgba(0,0,0,0.35);
@@ -43,11 +43,11 @@ body.dark {
   border-bottom: 1px solid rgba(15,23,36,0.06);
   box-shadow: var(--shadow);
 }
-.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.75rem 0; }
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.75rem 0; flex-wrap: wrap; } /* ALTERAÇÃO: flex-wrap para quebrar em telas pequenas */
 .brand { font-weight: 700; color: var(--text); text-decoration: none; }
 
 /* Navegação */
-.main-nav { display: flex; align-items: center; gap: 1rem; position: relative; }
+.main-nav { display: flex; align-items: center; gap: 1rem; position: relative; z-index: 1000; } /* ALTERAÇÃO: z-index alto para ficar acima do conteúdo */
 .main-nav ul { display: flex; gap: 0.6rem; list-style: none; }
 .main-nav a {
   display: inline-block; padding: 0.5rem 0.9rem; border-radius: 8px;
@@ -78,7 +78,7 @@ body.dark {
 }
 .hero img { max-width: 100%; height: auto; }
 
-/* Foto circular (largura = altura) */
+/* Foto circular */
 .profile-photo {
   position: absolute;
   top: 20px;
@@ -91,12 +91,12 @@ body.dark {
   border: 2px solid rgba(255,255,255,0.8);
   z-index: 2;
 }
-/* Em telas pequenas a foto sai do fluxo absoluto para não sobrepor o texto */
+/* ALTERAÇÃO: Em telas pequenas a foto sai do fluxo absoluto para não sobrepor o texto */
 @media (max-width: 720px) {
   .profile-photo {
-    position: static;        /* ALTERAÇÃO: evita sobreposição */
+    position: static;
     display: block;
-    margin: 0 auto 1rem;
+    margin: 1rem auto; /* margem superior para afastar do topo */
     width: 96px;
     height: 96px;
     transform: none;
@@ -125,8 +125,6 @@ body.dark {
   box-shadow: var(--shadow);
   color: var(--text);
 }
-
-/* Links e botões dentro dos cards usam a variável --link para contraste em ambos temas */
 .project a, .project .view-link, .project button {
   color: var(--link);
   text-decoration: none;
@@ -138,10 +136,9 @@ body.dark {
   outline: none;
 }
 
-/* Contato (consolidado) */
+/* Contato */
 .contact-page {
-  /* ALTERAÇÃO: usa variável para evitar problemas com 100vh em mobile */
-  min-height: var(--app-min-height, 100vh);
+  min-height: var(--app-min-height, 100vh); /* ALTERAÇÃO: usa variável para evitar problemas com 100vh em mobile */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -193,93 +190,5 @@ body.dark {
 /* Ações do formulário */
 .form-actions { display: flex; gap: 0.6rem; margin-top: 0.6rem; }
 button[type="submit"], .btn-primary { background: var(--primary); color: #fff; border: 0; padding: 0.6rem 1rem; border-radius: 8px; cursor: pointer; }
-.btn-secondary { background: transparent; border: 1px solid var(--muted); padding: 0.6rem 1rem; border-radius: 8px; cursor: pointer; color: var(--text); }
-body.dark .btn-secondary { background: #a78bfa; color: #fff; border: none; }
-
-/* Rodapé */
-.site-footer { border-top: 1px solid rgba(15,23,36,0.06); padding: 1rem 0; margin-top: 2rem; text-align: center; color: var(--muted); }
-
-/* Modal */
-.modal {
-  display: none;
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.6);
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-}
-.modal[aria-hidden="false"] { display: flex; }
-.modal-content {
-  background: var(--surface);
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: var(--shadow);
-  max-width: 400px;
-  width: calc(100% - 2rem);
-  text-align: center;
-}
-
-/* Utilitários */
-.sr-only {
-  position: absolute!important;
-  height: 1px; width: 1px;
-  overflow: hidden; clip: rect(1px,1px,1px,1px);
-  white-space: nowrap; border: 0; padding: 0; margin: -1px;
-}
-
-/* ALTERAÇÃO: variáveis para evitar problemas com 100vh em mobile */
-:root { --app-min-height: 100vh; }
-@supports (height: 100svh) { :root { --app-min-height: 100svh; } }
-
-/* Menu mobile: ocupa largura entre margens e permite rolagem vertical */
-@media (max-width: 800px) {
-  .main-nav ul {
-    display: none;
-    position: absolute;
-    top: 64px;
-    left: 0;                /* ALTERAÇÃO: começa na borda esquerda */
-    right: 0;               /* ALTERAÇÃO: ocupa até a borda direita */
-    width: 100%;            /* ALTERAÇÃO: ocupa toda a largura da tela */
-    max-height: calc(100vh - 80px); /* cabe na tela */
-    overflow-y: auto;       /* rola se tiver muitos links */
-    padding: 0.8rem;
-    border-radius: 0;       /* opcional: remove cantos arredondados para ocupar toda largura */
-    box-shadow: var(--shadow);
-    background: var(--surface);
-    flex-direction: column;
-    gap: 0.6rem;
-    box-sizing: border-box;
-    z-index: 999;           /* fica acima do conteúdo */
-  }
-
-  .main-nav.open ul {
-    display: flex;
-  }
-
-  .nav-toggle { display: inline-flex; }
-  .brand { font-size: 1rem; }
-}
-
-
-/* Aumentar área de toque dos botões */
-.theme-toggle, .nav-toggle, button[type="submit"], .btn-secondary, .btn-primary {
-  min-height: 44px;
-  padding-left: 12px;
-  padding-right: 12px;
-}
-
-/* Evitar overflow horizontal */
-html, body { overflow-x: hidden; }
-
-/* Ajustes tipográficos para telas muito pequenas */
-@media (max-width: 420px) {
-  .hero h1 { font-size: 1.4rem; }
-  .hero p, .contact-header p { font-size: 0.95rem; }
-  .contact-section { padding: 1rem; margin: 0 0.5rem; }
-  .contact-form { padding: 1rem; gap: 0.6rem; }
-  .contact-form input, .contact-form textarea { padding: 0.75rem; }
-  .form-actions { flex-direction: column; gap: 0.5rem; }
-  .form-actions button { width: 100%; }
+.btn-secondary { background: transparent;
 }
