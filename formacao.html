@@ -1,70 +1,62 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt_BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Formação</title>
-
-  <script>
-    try {
-      const t = localStorage.getItem('theme');
-      if (t === 'dark') document.body.classList.add('dark');
-    } catch (e) {}
-  </script>
-
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Formação</title>
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="index.html">Currículo Pessoal</a>
 
-      <button class="nav-toggle" aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menu">
-        <span class="hamburger" aria-hidden="true"></span>
-      </button>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">Currículo Pessoal</a>
+            <button id="btnToggle" class="nav-toggle" aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menu">
+                <span class="hamburger"></span>
+            </button>
+            <nav id="mainNav" class="main-nav" aria-label="Menu principal">
+                <ul>
+                    <li><a href="index.html">Sobre mim</a></li>
+                    <li><a href="formacao.html" class="active">Formação</a></li>
+                    <li><a href="portfolio.html">Portfólio</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+                <button id="themeToggle" class="theme-toggle" aria-pressed="false">🌙</button>
+            </nav>
+        </div>
+    </header>
 
-      <nav id="mainNav" class="main-nav" aria-label="Menu principal">
-        <ul>
-          <li><a href="index.html">Sobre mim</a></li>
-          <li><a href="formacao.html" class="active">Formação</a></li>
-          <li><a href="portfolio.html">Portfólio</a></li>
-          <li><a href="contato.html">Contato</a></li>
-        </ul>
-        <button class="theme-toggle" aria-pressed="false" title="Alternar tema">🌙</button>
-      </nav>
-    </div>
-  </header>
+    <main class="container main-content">
+        <section>
+            <br><br><h1>Formação</h1> <br>
+            <ul>
+                <li><strong>Curso Superior em andamento:</strong> UNINTER — Tecnologia em Ciência de Dados (2025--)</li>
+                <li><strong>Curso Superior completo:</strong> UNIASSELVI — Tecnologia em Processos Gerenciais (2022- 2024)</li>
+            </ul> <br><br><br>
 
-  <main class="container main-content">
-    <section>
-      <h1>Formação</h1>
-      <ul>
-        <li><strong>Curso Superior em andamento:</strong> UNINTER — Tecnologia em Ciência de Dados (2025--)</li>
-        <li><strong>Curso Superior completo:</strong> UNIASSELVI — Tecnologia em Processos Gerenciais (2022-2024)</li>
-      </ul>
+            <h2>Cursos e Certificações</h2><br>
+            <ul>
+                <li>Curso: Comunicação e Oratória </li>
+                <li>Certificado: Acessibilidade na Web</li>
+                <li>Certificado: Empreendedorismo</li>
+                <li>Certificado: Algoritmos e Lógica de Programação</li><br><br>
+            </ul>
 
-      <h2>Cursos e Certificações</h2>
-      <ul>
-        <li>Curso: Comunicação e Oratória</li>
-        <li>Certificado: Acessibilidade na Web</li>
-        <li>Certificado: Empreendedorismo</li>
-        <li>Certificado: Algoritmos e Lógica de Programação</li>
-      </ul>
+            <h2>Idiomas</h2><br>
+            <ul>
+                <li>Português — Nativo</li>
+                <li>Inglês — Intermediário</li>
+            </ul>
+        </section>
+    </main>
 
-      <h2>Idiomas</h2>
-      <ul>
-        <li>Português — Nativo</li>
-        <li>Inglês — Intermediário</li>
-      </ul>
-    </section>
-  </main>
+    <footer class="site-footer">
+        <div class="container">
+            <p>© <span id="year2"></span> Aline — Portfólio pessoal</p>
+        </div>
+    </footer>
 
-  <footer class="site-footer">
-    <div class="container">
-      <p>© <span id="year2"></span> Aline — Portfólio pessoal</p>
-    </div>
-  </footer>
+    <script src="main.js"></script>
 
-  <script src="main.js"></script>
 </body>
 </html>
