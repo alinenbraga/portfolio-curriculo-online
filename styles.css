@@ -1,3 +1,11 @@
+/* styles.css - Versão final com suporte completo a inputs em dark mode
+   - Variáveis para campos (input/textarea/select)
+   - Autofill corrigido para Chrome/Safari
+   - Placeholder legível
+   - focus-visible para navegação por teclado
+   - Transições suaves no menu mobile
+*/
+
 /* Reset básico */
 *,
 *::before,
@@ -28,10 +36,19 @@ body {
   --card-bg: #ffffff;
   --radius: 12px;
   --shadow: 0 6px 20px rgba(16,24,40,0.08);
-  --app-min-height: 100vh; /* ALTERAÇÃO: fallback para mobile */
+  --app-min-height: 100vh; /* fallback para mobile */
+
+  /* VARIÁVEIS ADICIONAIS PARA CONTROLES DE FORMULÁRIO */
+  --input-bg: #ffffff;
+  --input-border: rgba(15,23,36,0.08);
+  --input-text: #0f1720;
+  --input-placeholder: rgba(15,23,36,0.45);
 }
+
+/* Suporte a 100svh quando disponível */
 @supports (height: 100svh) { :root { --app-min-height: 100svh; } }
 
+/* Tema escuro */
 body.dark {
   --bg: #0b1220;
   --surface: #1a2332;
@@ -39,10 +56,16 @@ body.dark {
   --muted: #9aa6b2;
   --primary: #60a5fa;
   --accent: #60a5fa;
-  --link: #8cc6ff;      /* ALTERAÇÃO: link mais claro no dark para contraste */
+  --link: #8cc6ff;
   --link-hover: #bfe6ff;
   --card-bg: #16202b;
   --shadow: 0 6px 20px rgba(0,0,0,0.35);
+
+  /* Ajustes para inputs no dark */
+  --input-bg: #0f1720;
+  --input-border: rgba(255,255,255,0.06);
+  --input-text: #e6eef8;
+  --input-placeholder: rgba(255,255,255,0.55);
 }
 
 /* Layout base */
@@ -57,14 +80,15 @@ body.dark {
   border-bottom: 1px solid rgba(15,23,36,0.06);
   box-shadow: var(--shadow);
 }
-/* ALTERAÇÃO: permite quebra em telas pequenas para evitar overflow do header */
+
+/* Header responsivo */
 .header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
   padding: 0.75rem 0;
-  flex-wrap: wrap; /* ALTERAÇÃO */
+  flex-wrap: wrap;
 }
 .brand { font-weight: 700; color: var(--text); text-decoration: none; }
 
@@ -74,9 +98,9 @@ body.dark {
   align-items: center;
   gap: 1rem;
   position: relative;
-  z-index: 1000; /* ALTERAÇÃO: garante que o nav fique acima do conteúdo */
+  z-index: 1000;
 }
-.main-nav ul { display: flex; gap: 0.6rem; list-style: none; }
+.main-nav ul { display: flex; gap: 0.6rem; list-style: none; margin: 0; padding: 0; }
 .main-nav a {
   display: inline-block;
   padding: 0.5rem 0.9rem;
@@ -97,7 +121,7 @@ body.dark {
   cursor: pointer;
   color: var(--text);
 }
-.nav-toggle { display: none; background: none; border: 0; cursor: pointer; }
+.nav-toggle { display: none; background: none; border: 0; cursor: pointer; padding: 0.25rem; }
 .hamburger { width: 20px; height: 2px; background: var(--text); position: relative; display: inline-block; }
 .hamburger::before, .hamburger::after { content: ""; position: absolute; left: 0; width: 20px; height: 2px; background: var(--text); }
 .hamburger::before { top: -6px; } .hamburger::after { top: 6px; }
@@ -119,7 +143,7 @@ body.dark {
 
 /* Foto circular */
 .profile-photo {
-  position: absolute; /* desktop: fica no canto */
+  position: absolute;
   top: 20px;
   right: 20px;
   width: 120px;
@@ -130,13 +154,11 @@ body.dark {
   border: 2px solid rgba(255,255,255,0.8);
   z-index: 2;
 }
-
-/* ALTERAÇÃO: Em telas pequenas a foto sai do fluxo absoluto para não sobrepor o texto */
 @media (max-width: 720px) {
   .profile-photo {
-    position: static;        /* evita sobreposição */
+    position: static;
     display: block;
-    margin: 1rem auto;       /* ALTERAÇÃO: margem superior para afastar do topo */
+    margin: 1rem auto;
     width: 96px;
     height: 96px;
     transform: none;
@@ -178,7 +200,7 @@ body.dark {
 
 /* Contato */
 .contact-page {
-  min-height: var(--app-min-height, 100vh); /* usa variável para evitar problemas com 100vh em mobile */
+  min-height: var(--app-min-height, 100vh);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -197,6 +219,7 @@ body.dark {
 .contact-header p { color: var(--muted); font-size: 1rem; }
 
 /* Formulário */
+/* Usa variáveis para fundo e borda dos inputs, garantindo contraste em dark */
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -208,15 +231,38 @@ body.dark {
   width: 100%;
   max-width: 500px;
 }
-.contact-form input, .contact-form textarea {
+
+/* APLICAÇÃO: controles usam variáveis para bg, borda e texto */
+.contact-form input,
+.contact-form textarea,
+.contact-form select {
   padding: 0.6rem 0.8rem;
-  border: 1px solid rgba(15,23,36,0.08);
+  border: 1px solid var(--input-border);
   border-radius: 8px;
   font-size: 1rem;
-  color: var(--text);
-  background: #fff;
+  color: var(--input-text);
+  background: var(--input-bg);
+  transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
 }
-.contact-form input:focus, .contact-form textarea:focus {
+
+/* Placeholder legível */
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: var(--input-placeholder);
+  opacity: 1;
+}
+
+/* Autofill (Chrome/Safari) — força cor do texto e fundo quando o navegador aplica estilo */
+.contact-form input:-webkit-autofill,
+.contact-form textarea:-webkit-autofill {
+  -webkit-text-fill-color: var(--input-text) !important;
+  box-shadow: 0 0 0px 1000px var(--input-bg) inset !important;
+}
+
+/* Estados de foco */
+.contact-form input:focus,
+.contact-form textarea:focus,
+.contact-form select:focus {
   outline: none;
   border-color: var(--accent);
   box-shadow: 0 0 0 3px rgba(11,94,215,0.12);
@@ -247,7 +293,7 @@ button[type="submit"], .btn-primary {
   cursor: pointer;
   color: var(--text);
 }
-/* ALTERAÇÃO: botão secundário no modo dark com cor lilás e borda consistente */
+/* Botão secundário no modo dark com cor lilás e borda consistente */
 body.dark .btn-secondary {
   background: #a78bfa;
   color: #fff;
@@ -292,33 +338,41 @@ body.dark .btn-secondary:hover {
 }
 
 /* Menu mobile: ocupa largura total e permite rolagem vertical */
-/* ALTERAÇÃO: left 0 e right 0 para garantir centralização e evitar que o menu fique fora da tela */
+/* left/right 0 para garantir centralização; transição suave adicionada */
 @media (max-width: 800px) {
   .main-nav ul {
     display: none;
     position: absolute;
-    top: 64px;
-    left: 0;               /* ALTERAÇÃO */
-    right: 0;              /* ALTERAÇÃO */
-    width: 100%;           /* ALTERAÇÃO */
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    width: 100%;
     max-height: calc(100vh - 80px);
     overflow-y: auto;
     overflow-x: hidden;
     padding: 0.8rem;
-    border-radius: 0;      /* ocupa toda a largura sem cantos arredondados */
+    border-radius: 0;
     box-shadow: var(--shadow);
     background: var(--surface);
     box-sizing: border-box;
     flex-direction: column;
     gap: 0.6rem;
-    z-index: 1100;         /* ALTERAÇÃO: garante que fique acima de outros elementos */
+    z-index: 1100;
+    transition: transform 220ms ease, opacity 180ms ease;
+    transform-origin: top center;
+    opacity: 0;
+    transform: translateY(-6px) scaleY(0.98);
+    pointer-events: none;
   }
   .main-nav.open ul {
     display: flex;
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+    pointer-events: auto;
   }
   .nav-toggle { display: inline-flex; }
   .brand { font-size: 1rem; }
-  .main-nav { z-index: 1100; } /* reforço */
+  .main-nav { z-index: 1100; }
 }
 
 /* Aumentar área de toque dos botões */
@@ -329,11 +383,13 @@ body.dark .btn-secondary:hover {
 }
 
 /* Foco visível para acessibilidade */
-/* ALTERAÇÃO: destaque de foco para navegação por teclado */
-:focus {
+/* Usa focus-visible para mostrar outline apenas quando apropriado (teclado) */
+:focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: 2px;
 }
+/* Fallback suave para navegadores sem suporte */
+:focus { box-shadow: 0 0 0 3px rgba(11,94,215,0.06); }
 
 /* Ajustes tipográficos para telas muito pequenas */
 @media (max-width: 420px) {
@@ -344,6 +400,5 @@ body.dark .btn-secondary:hover {
   .contact-form input, .contact-form textarea { padding: 0.75rem; }
   .form-actions { flex-direction: column; gap: 0.5rem; }
   .form-actions button { width: 100%; }
-  /* Pequeno padding extra para telas muito estreitas */
   body { padding-left: 0.5rem; padding-right: 0.5rem; }
 }
