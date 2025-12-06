@@ -1,64 +1,70 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Portfólio</title>
-    <link rel="stylesheet" href="styles.css"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfólio - Aline — Portfólio</title>
+  <meta name="description" content="Projetos e trabalhos" />
+  <script>
+    (function(){
+      try { if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark'); } catch(e){}
+    })();
+  </script>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <header class="site-header">
-        <div class="container header-inner">
-            <a class="brand" href="index.html">Currículo Pessoal</a>
-            <button id="btnToggle" class="nav-toggle" aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menu">
-                <span class="hamburger"></span>
-            </button>
-            <nav id="mainNav" class="main-nav" aria-label="Menu principal">
-                <ul>
-                    <li><a href="index.html">Sobre mim</a></li>
-                    <li><a href="formacao.html">Formação</a></li>
-                    <li><a href="portfolio.html" class="active">Portfólio</a></li>
-                    <li><a href="contato.html">Contato</a></li>
-                </ul>
-                <button id="themeToggle" class="theme-toggle" aria-pressed="false">🌙</button>
-            </nav>
-        </div>
-    </header>
-    
-    <main class="container main-content">
-        <section>
-            <h1>Portfólio</h1><br>
-            <p>Abaixo estão alguns trabalhos realizados.</p><br>
-            
-            <div class="projects-grid">
-                <article class="project">
-                    <h3>Sistema Informatizado para Registro de Ocorrência Estudantil</h3>
-                    <p>Artigo sobre um sistema deselvolvido para registrar ocorrências estudantis no Insituto Federal do Espiríto Santo - Polo Alegre.</p>
-                    <a href="Artigo_Sistema_Ocorrencia.pdf" target="_blank" rel="noopener">Ver projeto</a>
-                </article>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">Currículo Pessoal</a>
+      <button class="nav-toggle" aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menu">
+        <span class="hamburger"></span>
+      </button>
+      <nav id="mainNav" class="main-nav" aria-label="Menu principal" aria-hidden="false">
+        <ul>
+          <li><a href="index.html">Sobre mim</a></li>
+          <li><a href="formacao.html">Formação</a></li>
+          <li><a href="portfolio.html" class="active">Portfólio</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+        <button class="theme-toggle" aria-pressed="false" aria-label="Alternar tema">
+          <span class="pill-sun">☀️</span><span class="pill-moon">🌙</span>
+        </button>
+      </nav>
+    </div>
+  </header>
 
-                <article class="project">
-                    <h3>Inserção de Redes em Estantes de Rebin</h3>
-                    <p>Processo para instalar redes em estantes utilizadas para separeção de itens para clientes da Amazon.</p>
-                    <a href="Projeto2.pdf" target="_blank" rel="noopener">Ver projeto</a>
-                </article>
-                
-                <article class="project">
-                    <h3>Aplicativo de Auxílio na Criação de Peixes</h3>
-                    <p>Artigo sobre um aplicativo desenvolvido para auxiliar no processo de criação de peixes.</p>
-                    <a href="Projeto3.pdf" target="_blank" rel="noopener">Ver projeto</a>
-                </article>
-            </div>
-        </section>
-    </main>
+  <main class="container main-content" role="main">
+    <section class="card">
+      <h1>Portfólio</h1>
+      <p>Abaixo estão alguns trabalhos realizados.</p>
 
-    <footer class="site-footer">
-        <div class="container">
-            <p>© <span id="year3"></span> Aline — Portfólio pessoal</p>
-        </div>
-    </footer>
-    
-    <script src="main.js"></script>
+      <div class="projects-grid">
+        <article class="project-card">
+          <h3>Sistema Informatizado para Registro de Ocorrência Estudantil</h3>
+          <p>Artigo sobre um sistema desenvolvido para registrar ocorrências estudantis no Instituto Federal.</p>
+          <a href="Artigo_Sistema_Ocorrencia.pdf" class="project-link" target="_blank" rel="noopener noreferrer">Ver projeto</a>
+        </article>
 
+        <article class="project-card">
+          <h3>Inserção de Redes em Estantes de Rebin</h3>
+          <p>Processo para instalar redes em estantes utilizadas para separação de itens.</p>
+          <a href="Projeto2.pdf" class="project-link" target="_blank" rel="noopener noreferrer">Ver projeto</a>
+        </article>
+
+        <article class="project-card">
+          <h3>Aplicativo de Auxílio na Criação de Peixes</h3>
+          <p>Artigo sobre um aplicativo desenvolvido para auxiliar no processo de criação de peixes.</p>
+          <a href="Projeto3.pdf" class="project-link" target="_blank" rel="noopener noreferrer">Ver projeto</a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p>© <span class="year"></span> Aline — Portfólio pessoal</p>
+    </div>
+  </footer>
+  <script src="main.js"></script>
 </body>
 </html>

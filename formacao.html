@@ -1,62 +1,67 @@
-<!DOCTYPE html>
-<html lang="pt_BR">
+<!doctype html>
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Formação</title>
-    <link rel="stylesheet" href="styles.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Formação - Aline — Portfólio</title>
+  <meta name="description" content="Formação acadêmica e cursos" />
+  <script>
+    (function(){
+      try { if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark'); } catch(e){}
+    })();
+  </script>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">Currículo Pessoal</a>
+      <button class="nav-toggle" aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menu">
+        <span class="hamburger"></span>
+      </button>
+      <nav id="mainNav" class="main-nav" aria-label="Menu principal" aria-hidden="false">
+        <ul>
+          <li><a href="index.html">Sobre mim</a></li>
+          <li><a href="formacao.html" class="active">Formação</a></li>
+          <li><a href="portfolio.html">Portfólio</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+        <button class="theme-toggle" aria-pressed="false" aria-label="Alternar tema">
+          <span class="pill-sun">☀️</span><span class="pill-moon">🌙</span>
+        </button>
+      </nav>
+    </div>
+  </header>
 
-    <header class="site-header">
-        <div class="container header-inner">
-            <a class="brand" href="index.html">Currículo Pessoal</a>
-            <button id="btnToggle" class="nav-toggle" aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menu">
-                <span class="hamburger"></span>
-            </button>
-            <nav id="mainNav" class="main-nav" aria-label="Menu principal">
-                <ul>
-                    <li><a href="index.html">Sobre mim</a></li>
-                    <li><a href="formacao.html" class="active">Formação</a></li>
-                    <li><a href="portfolio.html">Portfólio</a></li>
-                    <li><a href="contato.html">Contato</a></li>
-                </ul>
-                <button id="themeToggle" class="theme-toggle" aria-pressed="false">🌙</button>
-            </nav>
-        </div>
-    </header>
+  <main class="container main-content" role="main">
+    <section class="formation-circles" role="region" aria-label="Formação, cursos e idiomas">
+      <div class="formation-circle" aria-labelledby="eduTitle">
+        <h3 id="eduTitle">Educação</h3>
+        <li>UNINTER - Tecnologia em Ciência de Dados (2025-Atualmente)</li><br>
+        <li>UNIASSELVI - Tecnologia em Processos Gerenciais (2022–2024)</li>
+      </div>
 
-    <main class="container main-content">
-        <section>
-            <br><br><h1>Formação</h1> <br>
-            <ul>
-                <li><strong>Curso Superior em andamento:</strong> UNINTER — Tecnologia em Ciência de Dados (2025--)</li>
-                <li><strong>Curso Superior completo:</strong> UNIASSELVI — Tecnologia em Processos Gerenciais (2022- 2024)</li>
-            </ul> <br><br><br>
+      <div class="formation-circle" aria-labelledby="coursesTitle">
+        <h3 id="coursesTitle">Cursos e Certificações</h3>
+        <li>Comunicação e Oratória</li>
+        <li>Acessibilidade na Web</li>
+        <li>Empreendedorismo</li><br>
+        <li>Algoritmos e Lógica de Programação</li>
+      </div>
 
-            <h2>Cursos e Certificações</h2><br>
-            <ul>
-                <li>Curso: Comunicação e Oratória </li>
-                <li>Certificado: Acessibilidade na Web</li>
-                <li>Certificado: Empreendedorismo</li>
-                <li>Certificado: Algoritmos e Lógica de Programação</li><br><br>
-            </ul>
+      <div class="formation-circle" aria-labelledby="langTitle">
+        <h3 id="langTitle">Idiomas</h3>
+        <li>Português — Nativo<br></li>
+        <li>Inglês — Intermediário</li>
+      </div>
+    </section>
+  </main>
 
-            <h2>Idiomas</h2><br>
-            <ul>
-                <li>Português — Nativo</li>
-                <li>Inglês — Intermediário</li>
-            </ul>
-        </section>
-    </main>
-
-    <footer class="site-footer">
-        <div class="container">
-            <p>© <span id="year2"></span> Aline — Portfólio pessoal</p>
-        </div>
-    </footer>
-
-    <script src="main.js"></script>
-
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p>© <span class="year"></span> Aline — Portfólio pessoal</p>
+    </div>
+  </footer>
+  <script src="main.js"></script>
 </body>
 </html>
