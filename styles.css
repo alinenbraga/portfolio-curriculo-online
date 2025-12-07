@@ -13,7 +13,7 @@ body {
   min-height: 100vh;
 }
 
-/* VARIÁVEIS DE TEMA (mantidas) */
+/* VARIÁVEIS DE TEMA */
 :root {
   --bg: #f6f6f7;
   --surface: #ffffff;
@@ -89,7 +89,7 @@ body {
 .theme-toggle:not(.is-dark) .pill-sun { transform: scale(1.05); opacity: 1; }
 .theme-toggle:not(.is-dark) .pill-moon { transform: scale(0.9); opacity: 0.35; }
 
-/* Botão hamburger */
+/* Botão hamburger (MENU) */
 .nav-toggle { display: none; background: none; border: 0; padding: 0.45rem; cursor: pointer; border-radius: 10px; }
 .hamburger { width: 20px; height: 2px; background: var(--text); position: relative; display: inline-block; }
 .hamburger::before, .hamburger::after { content: ""; position: absolute; left: 0; width: 20px; height: 2px; background: var(--text); }
@@ -220,7 +220,7 @@ ul { margin-left: 1rem; margin-bottom: 0.6rem; }
 .formation-circle h3 { margin-bottom: 0.6rem; font-size: 1.35rem; font-weight: 700; }
 .formation-circle p, .formation-circle ul { font-size: 1rem; line-height: 1.5; }
 
-/* Portfólio: grid elegante */
+/* Portfólio */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -323,7 +323,7 @@ ul { margin-left: 1rem; margin-bottom: 0.6rem; }
   text-align: center;
 }
 
-/* Footer */
+/* Footer(Rodapé) */
 .site-footer {
   border-top: 1px solid rgba(0,0,0,0.06);
   padding: 1rem 0;
@@ -372,3 +372,4 @@ ul { margin-left: 1rem; margin-bottom: 0.6rem; }
   outline: 3px solid rgba(181,140,255,0.22);
   outline-offset: 2px;
 }
+
