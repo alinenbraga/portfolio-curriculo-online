@@ -16,9 +16,14 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html">Currículo Pessoal</a>
-      <button class="nav-toggle" aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menu">
-        <span class="hamburger"></span>
-      </button>
+      <div class="header-actions">
+        <button class="theme-toggle" aria-pressed="false" aria-label="Alternar tema">
+          <span class="pill-sun">☀️</span><span class="pill-moon">🌙</span>
+        </button>
+        <button class="nav-toggle" aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menu">
+          <span class="hamburger"></span>
+        </button>
+      </div>
       <nav id="mainNav" class="main-nav" aria-label="Menu principal" aria-hidden="false">
         <ul>
           <li><a href="index.html" class="active">Sobre mim</a></li>
@@ -26,23 +31,20 @@
           <li><a href="portfolio.html">Portfólio</a></li>
           <li><a href="contato.html">Contato</a></li>
         </ul>
-        <button class="theme-toggle" aria-pressed="false" aria-label="Alternar tema">
-          <span class="pill-sun">☀️</span><span class="pill-moon">🌙</span>
-        </button>
       </nav>
     </div>
   </header>
 
-  <div class="photo-area" aria-hidden="true">
+  <div class="photo-area">
     <div class="photo-area-inner">
       <img src="imagem-sobre.jpg" alt="Foto de Aline" class="profile-outside" />
     </div>
   </div>
 
-  <main class="container main-content" role="main">
+  <main class="container main-content">
     <section class="card about-card">
-      <h1>Olá! Eu sou Aline Nogueira Braga</h1><p>
-      <p>Sou formada Tecnóloga em Processos Gerenciais e atualmente cursando Tecnologia em Ciência de Dados. <br> Aqui você encontra meu currículo online, projetos e um pouco sobre mim.</p><br>
+      <h1>Olá! Eu sou Aline Nogueira Braga</h1>
+      <p>Sou formada Tecnóloga em Processos Gerenciais e atualmente cursando Tecnologia em Ciência de Dados.<br> Aqui você encontra meu currículo online, projetos e um pouco sobre mim.</p>
       <p><strong>Hobbies:</strong> Leitura, jogos, quebra-cabeças e caminhadas ao ar livre.</p>
     </section>
 
@@ -50,7 +52,7 @@
       <h2>Apresentação</h2>
       <p>Sou capixaba, nascida em Alegre-ES e resido atualmente em Gravataí-RS.</p>
       <p>Tenho experiência em Logística (2 anos) e atualmente trabalho como suporte técnico para um provedor de internet.<br> Sou centrada, detalhista e persistente, buscando desenvolvimento na área de tecnologia.</p>
-      <br><h3>Competências</h3>
+      <h3>Competências</h3>
       <ul>
         <li>Linguagens: Java, Python, C</li>
         <li>Bancos de Dados</li>
@@ -59,7 +61,7 @@
     </section>
   </main>
 
-  <footer class="site-footer" role="contentinfo">
+  <footer class="site-footer">
     <div class="container">
       <p>© <span class="year"></span> Aline — Portfólio pessoal</p>
     </div>

@@ -13,7 +13,7 @@ body {
   min-height: 100vh;
 }
 
-/* VARIÁVEIS DE TEMA */
+/* VARIÁVEIS DE TEMA (mantidas) */
 :root {
   --bg: #f6f6f7;
   --surface: #ffffff;
@@ -27,7 +27,6 @@ body {
   --shadow: 0 6px 20px rgba(16,24,40,0.08);
   --header-bg: rgba(255,255,255,0.95);
 }
-
 .dark {
   --bg: #000000;
   --surface: #0b0b0b;
@@ -44,53 +43,31 @@ body {
 /* Layout base */
 .container { max-width: 1100px; margin: 0 auto; padding: 1.25rem; }
 
+/* Cabeçalho */
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
   background: var(--header-bg);
   border-bottom: 1px solid rgba(15,23,36,0.06);
   backdrop-filter: blur(6px);
 }
-
 .header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
   padding: 0.75rem 0;
-  flex-wrap: wrap;
+  position: relative;
 }
-
 .brand { font-weight: 700; color: var(--text); text-decoration: none; }
 
-.main-nav {
-  display: flex;
+/* Ações no canto direito (tema + hambúrguer) */
+.header-actions {
+  display: inline-flex;
   align-items: center;
-  gap: 1rem;
-  position: relative;
-  z-index: 1000;
+  gap: 0.5rem;
 }
-
-.main-nav ul {
-  display: flex;
-  gap: 0.6rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.main-nav a {
-  display: inline-block;
-  padding: 0.5rem 0.9rem;
-  border-radius: 8px;
-  color: var(--text);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.main-nav a.active { border-bottom: 3px solid var(--link); }
-.main-nav a:hover { opacity: 0.95; }
 
 /* Theme toggle (pílula) */
 .theme-toggle {
@@ -113,12 +90,32 @@ body {
 .theme-toggle:not(.is-dark) .pill-moon { transform: scale(0.9); opacity: 0.35; }
 
 /* Botão hamburger */
-.nav-toggle { display: none; background: none; border: 0; padding: 0.25rem; cursor: pointer; }
+.nav-toggle { display: none; background: none; border: 0; padding: 0.45rem; cursor: pointer; border-radius: 10px; }
 .hamburger { width: 20px; height: 2px; background: var(--text); position: relative; display: inline-block; }
 .hamburger::before, .hamburger::after { content: ""; position: absolute; left: 0; width: 20px; height: 2px; background: var(--text); }
 .hamburger::before { top: -6px; } .hamburger::after { top: 6px; }
 
-/* Foto fora da caixa (área preta) */
+/* Navegação */
+.main-nav { position: relative; z-index: 1100; }
+.main-nav ul {
+  display: flex;
+  gap: 0.6rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.main-nav a {
+  display: inline-block;
+  padding: 0.5rem 0.9rem;
+  border-radius: 8px;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+}
+.main-nav a.active { border-bottom: 3px solid var(--link); }
+.main-nav a:hover { opacity: 0.95; }
+
+/* Foto fora da caixa (hero) */
 .photo-area {
   background: #e9e5e5;
   color: #fff;
@@ -185,7 +182,7 @@ p { margin-bottom: 0.6rem; color: var(--text); }
 ul { margin-left: 1rem; margin-bottom: 0.6rem; }
 .about li { padding: 0.35rem 0; list-style: disc; list-style-position: inside; color: var(--text); }
 
-/* Formação: caixas grandes  */
+/* Formação: caixas grandes */
 .formation-circles {
   display: flex;
   justify-content: space-around;
@@ -195,8 +192,8 @@ ul { margin-left: 1rem; margin-bottom: 0.6rem; }
 }
 .formation-circle {
   width: 100%;
-  max-width: 420px;  
-  min-height: 280px;  
+  max-width: 420px;
+  min-height: 280px;
   border-radius: 16px;
   background: linear-gradient(135deg, #8bb4dd, #7876e0);
   color: #fff;
@@ -208,10 +205,22 @@ ul { margin-left: 1rem; margin-bottom: 0.6rem; }
   padding: 1.5rem;
   text-align: center;
 }
-.formation-circle h3 { margin-bottom: 0.6rem; font-size: 1.35rem; font-weight: 700; }
-.formation-circle p { font-size: 1rem; line-height: 1.5; }
+.formation-circle ul {
+  list-style: disc;
+  list-style-position: inside;
+  padding-left: 0;
+  margin: 0;
+  text-align: left;
+}
+.formation-circle li {
+  margin-bottom: 0.4rem;
+  color: #fff;
+}
 
-/* Portfólio: grid profissional e cartões elegantes */
+.formation-circle h3 { margin-bottom: 0.6rem; font-size: 1.35rem; font-weight: 700; }
+.formation-circle p, .formation-circle ul { font-size: 1rem; line-height: 1.5; }
+
+/* Portfólio: grid elegante */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -278,7 +287,7 @@ ul { margin-left: 1rem; margin-bottom: 0.6rem; }
   padding: 0.6rem 1rem;
   border-radius: 8px;
   cursor: pointer;
-  color: #000; /* texto preto solicitado */
+  color: #000;
   font-weight: 700;
 }
 .dark .btn-secondary {
@@ -323,8 +332,10 @@ ul { margin-left: 1rem; margin-bottom: 0.6rem; }
   color: var(--muted);
 }
 
-/* Mobile menu */
+/* Mobile menu responsivo */
 @media (max-width: 800px) {
+  .nav-toggle { display: inline-flex; }
+
   .main-nav ul {
     display: none;
     position: absolute;
@@ -342,6 +353,8 @@ ul { margin-left: 1rem; margin-bottom: 0.6rem; }
     opacity: 0;
     transform: translateY(-6px) scaleY(0.98);
     pointer-events: none;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 12px;
   }
   .main-nav.open ul {
     display: flex;
@@ -349,7 +362,8 @@ ul { margin-left: 1rem; margin-bottom: 0.6rem; }
     transform: translateY(0) scaleY(1);
     pointer-events: auto;
   }
-  .nav-toggle { display: inline-flex; }
+
+  .main-nav ul a { padding: 0.7rem 0.9rem; }
   .brand { font-size: 1rem; }
 }
 

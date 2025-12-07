@@ -41,6 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (open) nav.querySelector('a')?.focus();
     });
   });
+
+  // Fecha ao escolher um link
   document.querySelectorAll('.main-nav a').forEach(a => {
     a.addEventListener('click', (e) => {
       const nav = e.currentTarget.closest('.main-nav');
@@ -52,6 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // Esc fecha menu e modal
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       document.querySelectorAll('.main-nav.open').forEach(nav => {

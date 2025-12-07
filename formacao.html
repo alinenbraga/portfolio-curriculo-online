@@ -16,9 +16,16 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html">Currículo Pessoal</a>
-      <button class="nav-toggle" aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menu">
-        <span class="hamburger"></span>
-      </button>
+
+      <div class="header-actions">
+        <button class="theme-toggle" aria-pressed="false" aria-label="Alternar tema">
+          <span class="pill-sun">☀️</span><span class="pill-moon">🌙</span>
+        </button>
+        <button class="nav-toggle" aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menu">
+          <span class="hamburger"></span>
+        </button>
+      </div>
+
       <nav id="mainNav" class="main-nav" aria-label="Menu principal" aria-hidden="false">
         <ul>
           <li><a href="index.html">Sobre mim</a></li>
@@ -26,33 +33,36 @@
           <li><a href="portfolio.html">Portfólio</a></li>
           <li><a href="contato.html">Contato</a></li>
         </ul>
-        <button class="theme-toggle" aria-pressed="false" aria-label="Alternar tema">
-          <span class="pill-sun">☀️</span><span class="pill-moon">🌙</span>
-        </button>
       </nav>
     </div>
   </header>
 
   <main class="container main-content" role="main">
     <section class="formation-circles" role="region" aria-label="Formação, cursos e idiomas">
-      <div class="formation-circle" aria-labelledby="eduTitle">
-        <h3 id="eduTitle">Educação</h3>
-        <li>UNINTER - Tecnologia em Ciência de Dados (2025-Atualmente)</li><br>
-        <li>UNIASSELVI - Tecnologia em Processos Gerenciais (2022–2024)</li>
+      <div class="formation-circle">
+       <p><h3>Educação</h3></p>
+        <ul>
+          <li>UNINTER - Tecnologia em Ciência de Dados (2025-Atualmente)</li>
+          <li>UNIASSELVI - Tecnologia em Processos Gerenciais (2022–2024)</li>
+        </ul>
       </div>
 
-      <div class="formation-circle" aria-labelledby="coursesTitle">
-        <h3 id="coursesTitle">Cursos e Certificações</h3>
-        <li>Comunicação e Oratória</li>
-        <li>Acessibilidade na Web</li>
-        <li>Empreendedorismo</li><br>
-        <li>Algoritmos e Lógica de Programação</li>
+      <div class="formation-circle">
+        <p><h3>Cursos e Certificações</h3></p>
+        <ul>
+          <li>Comunicação e Oratória</li>
+          <li>Acessibilidade na Web</li>
+          <li>Empreendedorismo</li>
+          <li>Algoritmos e Lógica de Programação</li>
+        </ul>
       </div>
 
-      <div class="formation-circle" aria-labelledby="langTitle">
-        <h3 id="langTitle">Idiomas</h3>
-        <li>Português — Nativo<br></li>
-        <li>Inglês — Intermediário</li>
+      <div class="formation-circle">
+        <p><h3>Idiomas</h3></p>
+        <ul>
+          <li>Português — Nativo</li>
+          <li>Inglês — Intermediário</li>
+        </ul>
       </div>
     </section>
   </main>
@@ -62,6 +72,7 @@
       <p>© <span class="year"></span> Aline — Portfólio pessoal</p>
     </div>
   </footer>
+
   <script src="main.js"></script>
 </body>
 </html>
