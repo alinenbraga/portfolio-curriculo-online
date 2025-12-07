@@ -39,6 +39,10 @@ body {
   --shadow: 0 6px 20px rgba(0,0,0,0.35);
   --header-bg: rgba(0,0,0,0.85);
 }
+/* Na area da foto onde tem a faixa cinza no modo claro, no modo escuro ficará preta*/
+.dark .photo-area {
+  background: #000000;
+}
 
 /* Layout base */
 .container { max-width: 1100px; margin: 0 auto; padding: 1.25rem; }
@@ -372,4 +376,5 @@ ul { margin-left: 1rem; margin-bottom: 0.6rem; }
   outline: 3px solid rgba(181,140,255,0.22);
   outline-offset: 2px;
 }
+
 
